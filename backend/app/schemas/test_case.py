@@ -1,8 +1,5 @@
-"""
-Pydantic schemas for TestCase definitions and expected outcomes.
-"""
-
-from typing import Any, Dict, List, Optional
+from datetime import datetime
+from typing import Any, Dict, List, Optional, Union
 from pydantic import BaseModel, ConfigDict, Field
 from app.schemas.enums import AttackCategory, Severity
 
@@ -49,4 +46,4 @@ class TestCaseRead(TestCaseBase):
     __test__ = False
     model_config = ConfigDict(from_attributes=True)
     id: str
-    created_at: str
+    created_at: Union[datetime, str]

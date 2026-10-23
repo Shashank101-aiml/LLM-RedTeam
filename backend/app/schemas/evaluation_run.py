@@ -2,8 +2,9 @@
 Pydantic schemas for EvaluationRun management, creation, and comparison.
 """
 
-from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field
+from datetime import datetime
+from typing import Any, Dict, List, Optional, Union
+from pydantic import BaseModel, ConfigDict, Field
 from app.schemas.enums import ExecutionStatus
 from app.schemas.metric_snapshot import MetricSnapshotRead
 from app.schemas.finding import FindingRead
@@ -21,6 +22,7 @@ class EvaluationRunCreate(BaseModel):
 
 
 class EvaluationRunRead(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
     id: str
     target_name: str
     status: ExecutionStatus
@@ -31,15 +33,12 @@ class EvaluationRunRead(BaseModel):
     failed_tests: int = 0
     errors_count: int = 0
     findings_count: int = 0
-    created_at: str
-    completed_at: Optional[str] = None
+    created_at: Union[datetime, str]
+    completed_at: Optional[Union[datetime, str]] = None
     
     metrics: Optional[MetricSnapshotRead] = None
     findings: List[FindingRead] = Field(default_factory=list)
     executions: List[TestExecutionRead] = Field(default_factory=list)
-
-    class Config:
-        from_attributes = True
 
 
 class RunComparisonResult(BaseModel):

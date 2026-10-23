@@ -1,8 +1,5 @@
-"""
-Pydantic schemas for individual TestExecution records.
-"""
-
-from typing import Any, Dict, List, Optional
+from datetime import datetime
+from typing import Any, Dict, List, Optional, Union
 from pydantic import BaseModel, ConfigDict, Field
 from app.schemas.enums import ExecutionStatus, DefenseOutcome
 
@@ -32,4 +29,4 @@ class TestExecutionRead(TestExecutionBase):
     model_config = ConfigDict(from_attributes=True)
     id: str
     run_id: str
-    created_at: str
+    created_at: Union[datetime, str]

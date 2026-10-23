@@ -1,8 +1,5 @@
-"""
-Pydantic schemas for MetricSnapshots and statistical scores.
-"""
-
-from typing import Any, Dict, Optional, Tuple
+from datetime import datetime
+from typing import Any, Dict, Optional, Tuple, Union
 from pydantic import BaseModel, ConfigDict, Field
 
 
@@ -56,4 +53,4 @@ class MetricSnapshotRead(MetricSnapshotBase):
     model_config = ConfigDict(from_attributes=True)
     id: str
     run_id: str
-    created_at: str
+    created_at: Union[datetime, str]
