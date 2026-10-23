@@ -1,4 +1,4 @@
-# LLM Sentinel
+# LLM RedTeam
 
 > **Production-Grade LLM Red-Teaming, Adversarial Benchmarking, and Security Evaluation Platform**
 
@@ -13,7 +13,7 @@
 
 ## 1. System Overview
 
-**LLM Sentinel** is an automated, reproducible red-teaming evaluation and security benchmarking platform designed for LLM applications, autonomous AI agents, and authorization-aware control planes. 
+**LLM RedTeam** is an automated, reproducible red-teaming evaluation and security benchmarking platform designed for LLM applications, autonomous AI agents, and authorization-aware control planes. 
 
 It evaluates systems across **6 core adversarial attack categories** plus **benign control baselines**, pairing offensive security probes with statistical metrics, regression diffs, and evidence sanitization:
 
@@ -80,7 +80,7 @@ graph TD
 
 ## 3. Safe Mode & Security Controls
 
-LLM Sentinel is built defensively to prevent accidental harm, unauthorized scanning, and credential exposure:
+LLM RedTeam is built defensively to prevent accidental harm, unauthorized scanning, and credential exposure:
 
 - **Safe-Mode Default (`SAFE_MODE=true`)**: Target URLs are strictly checked against `ALLOWED_TARGET_HOSTS` (`localhost`, `127.0.0.1`, `::1`, `mock-target`). Requests to external domains or metadata services (e.g., AWS IMDS `169.254.169.254`) are aborted with `PermissionError` (HTTP 403).
 - **Synthetic Data Guarantee**: All test cases use synthetic canary tokens (`CANARY-SECRET-BETA-7790`), synthetic tenants (`tenant_alpha`, `tenant_bravo`), and synthetic roles. Zero real PII or production credentials exist in the codebase.
@@ -91,7 +91,7 @@ LLM Sentinel is built defensively to prevent accidental harm, unauthorized scann
 
 ## 4. Mathematical Metrics & Statistical Definitions
 
-LLM Sentinel calculates reproducible metrics with zero-denominator protections and statistical confidence intervals:
+LLM RedTeam calculates reproducible metrics with zero-denominator protections and statistical confidence intervals:
 
 | Metric | Formula | Description |
 |---|---|---|
@@ -103,7 +103,7 @@ LLM Sentinel calculates reproducible metrics with zero-denominator protections a
 | **Detection Recall** | $\text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}}$ | Detection sensitivity over all malicious inputs. |
 
 ### Wilson Score Confidence Intervals
-For small sample sizes ($N < 30$), standard normal approximations fail. LLM Sentinel computes exact Wilson score intervals:
+For small sample sizes ($N < 30$), standard normal approximations fail. LLM RedTeam computes exact Wilson score intervals:
 
 $$\tilde{p} = \frac{p + \frac{z^2}{2n} \pm z \sqrt{\frac{p(1-p)}{n} + \frac{z^2}{4n^2}}}{1 + \frac{z^2}{n}}$$
 
@@ -227,7 +227,7 @@ curl -X POST "http://localhost:8000/api/v1/integrations/import/garak?persist=tru
 
 ## 7. Companion AI-IAM Platform Integration
 
-LLM Sentinel natively interfaces with the companion agent identity control plane at `D:\ai-iam-platform` via [`AIIAMTargetAdapter`](file:///d:/RedTeam/backend/app/adapters/ai_iam_adapter.py):
+LLM RedTeam natively interfaces with the companion agent identity control plane at `D:\ai-iam-platform` via [`AIIAMTargetAdapter`](file:///d:/RedTeam/backend/app/adapters/ai_iam_adapter.py):
 
 - **Token Exchange**: Authenticates synthetic agent credentials (`kid_...:aiiam_...`) via `POST /api/v1/token/exchange` for short-lived RS256 JWTs.
 - **Pre-Execution MCP Interception**: Dispatches tool probes to `POST /api/v1/mcp/tools/{tool_name}` with causal provenance tracing (`causal_trace_id`).
@@ -237,7 +237,7 @@ LLM Sentinel natively interfaces with the companion agent identity control plane
 
 ## 8. Responsible-Use & Ethical Guidance
 
-LLM Sentinel is designed strictly for **defensive security auditing, model alignment verification, and regression tracking**.
+LLM RedTeam is designed strictly for **defensive security auditing, model alignment verification, and regression tracking**.
 
 1. **Explicit Authorization**: Only evaluate systems, models, and endpoints for which you have explicit written authorization.
 2. **Safe Mode Preservation**: Do not disable `SAFE_MODE` against third-party production services without coordinated vulnerability disclosure agreements.
