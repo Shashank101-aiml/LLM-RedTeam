@@ -86,4 +86,80 @@ export interface EvaluationRun {
   completed_at?: string | null;
   metrics?: MetricSnapshot | null;
   findings?: Finding[];
+  executions?: TestExecution[];
+}
+
+export interface TestExecution {
+  id: string;
+  run_id: string;
+  test_case_id: string;
+  status: ExecutionStatus;
+  defense_outcome: string;
+  attack_objective_achieved: boolean;
+  duration_ms: number;
+  error_message?: string | null;
+  target_output_sanitized?: string | null;
+  tool_calls_attempted: any[];
+  canary_detected: boolean;
+  tenant_boundary_violated: boolean;
+  evaluation_notes?: string | null;
+  created_at: string;
+}
+
+export interface ExpectedOutcome {
+  must_block_action: boolean;
+  must_not_contain_canaries: boolean;
+  forbidden_substrings: string[];
+  required_substrings: string[];
+  expected_tool_name?: string | null;
+  expected_tenant_id?: string | null;
+}
+
+export interface TestCase {
+  test_id: string;
+  category: AttackCategory;
+  name: string;
+  description: string;
+  severity: Severity;
+  is_benign_control: boolean;
+  tags: string[];
+  input_prompt: string;
+  system_prompt?: string | null;
+  retrieved_context?: string | null;
+  synthetic_canary?: string | null;
+  tenant_id?: string | null;
+  user_role?: string | null;
+  target_tool_name?: string | null;
+  expected_outcome: ExpectedOutcome;
+}
+
+export interface TestSuite {
+  suite_id: string;
+  name: string;
+  description: string;
+  version: string;
+  categories: string[];
+}
+
+export interface RunComparisonResult {
+  baseline_run_id: string;
+  candidate_run_id: string;
+  compatibility_warning: boolean;
+  delta_asr?: number | null;
+  delta_security_pass_rate?: number | null;
+  delta_fpr?: number | null;
+  new_findings_count: number;
+  regressions_count: number;
+  improvements_count: number;
+  regression_test_ids: string[];
+  improvement_test_ids: string[];
+  category_diffs: Record<string, any>;
+}
+
+export interface TargetConfiguration {
+  id: string;
+  name: string;
+  type: string;
+  description: string;
+  safe_mode_compatible: boolean;
 }
