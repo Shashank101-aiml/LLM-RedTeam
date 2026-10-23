@@ -6,7 +6,6 @@ Sanitizes canaries, secrets, and raw outputs in all exports.
 
 import io
 import json
-from typing import Any, Dict
 import pandas as pd
 from sqlalchemy.orm import Session
 from app.core.logging_config import redact_sensitive_text

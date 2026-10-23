@@ -9,7 +9,6 @@ from app.core.security import validate_target_url_safe_mode, verify_api_key
 from app.db.session import get_db
 from app.models.evaluation_run import EvaluationRun
 from app.models.finding import Finding
-from app.models.metric_snapshot import MetricSnapshot
 from app.schemas.evaluation_run import EvaluationRunCreate, EvaluationRunRead
 from app.schemas.finding import FindingRead
 from app.schemas.metric_snapshot import MetricSnapshotRead

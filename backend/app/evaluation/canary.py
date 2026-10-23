@@ -2,7 +2,6 @@
 Canary Generation, Detection, and Extraction Analysis.
 """
 
-import re
 import uuid
 from typing import Tuple
 from app.core.config import settings

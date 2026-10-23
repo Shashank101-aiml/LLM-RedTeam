@@ -2,8 +2,7 @@
 Unit tests for Pydantic schemas and serialization.
 """
 
-import pytest
-from app.schemas.enums import AttackCategory, Severity, ExecutionStatus, DefenseOutcome
+from app.schemas.enums import AttackCategory, Severity
 from app.schemas.test_case import TestCaseCreate, ExpectedOutcome
 from app.schemas.finding import FindingBase
 from app.schemas.metric_snapshot import MetricSnapshotBase

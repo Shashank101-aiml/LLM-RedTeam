@@ -5,7 +5,6 @@ Structured Logging Configuration with Secret and Canary Redaction.
 import logging
 import re
 import sys
-from typing import Any, Dict
 
 
 # Redaction patterns for tokens, secrets, canaries

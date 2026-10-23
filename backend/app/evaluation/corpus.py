@@ -72,7 +72,7 @@ class CorpusRegistry:
         return [tc for tc in self._test_cases.values() if tc.category == category]
 
     def get_available_suites(self) -> List[TestSuiteBase]:
-        all_cases = self.get_all()
+        self.get_all()
         return [
             TestSuiteBase(
                 suite_id="full-sentinel-v1",

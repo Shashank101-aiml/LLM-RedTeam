@@ -3,7 +3,7 @@ SQLAlchemy models for TestCase and TestSuite.
 """
 
 from typing import List, Optional
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, JSON, String, Table, Text
+from sqlalchemy import Boolean, Column, ForeignKey, JSON, String, Table, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base, TimestampMixin
 

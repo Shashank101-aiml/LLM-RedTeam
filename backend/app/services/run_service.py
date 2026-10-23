@@ -4,7 +4,6 @@ Evaluation Run Service orchestrating database persistence and background executi
 
 from datetime import datetime, timezone
 import uuid
-from typing import List, Optional
 from sqlalchemy.orm import Session
 from app.adapters.mock_adapter import MockTargetAdapter
 from app.adapters.ai_iam_adapter import AIIAMTargetAdapter
@@ -60,7 +59,7 @@ class RunService:
     def create_run(db: Session, run_in: EvaluationRunCreate) -> EvaluationRun:
         """Creates a pending EvaluationRun record in the database."""
         RunService.sync_test_cases_to_db(db)
-        
+
         all_cases = corpus_registry.get_all()
         if run_in.selected_categories:
             selected_set = set(run_in.selected_categories)

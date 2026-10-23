@@ -5,7 +5,7 @@ normalizing findings, and persisting them as EvaluationRuns.
 """
 
 from datetime import datetime, timezone
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 import uuid
 from fastapi import APIRouter, Body, Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session

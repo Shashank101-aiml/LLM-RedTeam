@@ -136,7 +136,7 @@ class GarakNormalizer:
                 failed_count += 1
                 status = ExecutionStatus.FAILED
                 finding_id = f"find-gk-{attempt_idx}-{uuid.uuid4().hex[:6]}"
-                
+
                 finding = NormalizedFinding(
                     finding_id=finding_id,
                     category=category,

@@ -1,0 +1,16 @@
+**/.git
+**/.github
+**/.pytest_cache
+**/.coverage
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/node_modules
+**/dist
+**/.venv
+**/env
+sentinel.db
+backend/sentinel.db
+.DS_Store
+*.log

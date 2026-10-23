@@ -14,7 +14,7 @@ from app.evaluation.context import ExecutionContext
 from app.evaluation.corpus import corpus_registry
 from app.evaluation.evaluator import OutcomeEvaluator
 from app.metrics.calculator import MetricsCalculator
-from app.schemas.enums import AttackCategory, ExecutionStatus
+from app.schemas.enums import AttackCategory
 
 
 def test_corpus_loading():

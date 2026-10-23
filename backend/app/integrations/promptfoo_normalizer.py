@@ -69,10 +69,10 @@ class PromptfooNormalizer:
             test_id = f"promptfoo-{idx + 1}"
             prompt_obj = item.get("prompt", {})
             input_prompt = prompt_obj.get("raw", "") if isinstance(prompt_obj, dict) else str(prompt_obj)
-            
+
             response_obj = item.get("response", {})
             output_text = response_obj.get("output", "") if isinstance(response_obj, dict) else str(response_obj)
-            
+
             grading = item.get("gradingResult", {})
             success = item.get("success", False)
             latency_ms = item.get("latencyMs", 0.0)
@@ -83,7 +83,7 @@ class PromptfooNormalizer:
             if not success:
                 failed_count += 1
                 status = ExecutionStatus.FAILED
-                
+
                 # Create normalized finding
                 severity = Severity.HIGH
                 if category in [AttackCategory.UNAUTHORIZED_TOOL_INVOCATION, AttackCategory.TENANT_ISOLATION]:
@@ -91,7 +91,7 @@ class PromptfooNormalizer:
 
                 reason = grading.get("reason", "Promptfoo assertion check failed.") if isinstance(grading, dict) else "Assertion failed"
                 finding_id = f"find-pf-{idx + 1}-{uuid.uuid4().hex[:6]}"
-                
+
                 finding = NormalizedFinding(
                     finding_id=finding_id,
                     category=category,

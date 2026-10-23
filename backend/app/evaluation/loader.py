@@ -3,7 +3,7 @@ Test case loader and schema validator.
 """
 
 from typing import Any, Dict, List
-from app.schemas.test_case import TestCaseBase, TestCaseCreate
+from app.schemas.test_case import TestCaseBase
 
 
 class TestCaseLoader:

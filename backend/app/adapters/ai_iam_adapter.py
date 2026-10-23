@@ -12,10 +12,9 @@ and structured policy decision capture.
 
 from datetime import datetime, timezone, timedelta
 import logging
-from typing import Any, Dict, List, Optional
+from typing import Optional
 import httpx
 from app.adapters.base import TargetAdapter, TargetResponse
-from app.core.config import settings
 from app.evaluation.context import ExecutionContext
 
 logger = logging.getLogger("llm_sentinel.adapters.ai_iam")
@@ -172,7 +171,7 @@ class AIIAMTargetAdapter(TargetAdapter):
                     data = resp.json()
                 except Exception:
                     data = {"detail": resp.text}
-                
+
                 reason = "OPA policy evaluated to DENY"
                 if isinstance(data.get("detail"), dict):
                     reason = data["detail"].get("reason", reason)

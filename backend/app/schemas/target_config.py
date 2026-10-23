@@ -5,7 +5,6 @@ Pydantic schemas for TargetConfiguration.
 from typing import Any, Dict, Optional
 from pydantic import BaseModel, ConfigDict
 from app.schemas.enums import TargetType
-from app.schemas.test_suite import TestSuiteBase, TestSuiteCreate, TestSuiteRead
 
 
 class TargetConfigBase(BaseModel):

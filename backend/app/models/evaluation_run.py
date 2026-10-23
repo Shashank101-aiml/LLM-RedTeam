@@ -3,8 +3,8 @@ SQLAlchemy model for EvaluationRun.
 """
 
 from datetime import datetime
-from typing import List, Optional
-from sqlalchemy import DateTime, ForeignKey, Integer, JSON, String, Text
+from typing import Optional
+from sqlalchemy import DateTime, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.base import Base, TimestampMixin
 

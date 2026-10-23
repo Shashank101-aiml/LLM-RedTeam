@@ -7,7 +7,6 @@ import pytest
 from fastapi.testclient import TestClient
 from app.db.session import init_db
 from app.main import app
-from app.services.run_service import RunService
 
 client = TestClient(app)
 

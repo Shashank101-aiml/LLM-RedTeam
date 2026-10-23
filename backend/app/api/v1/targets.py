@@ -2,7 +2,7 @@
 Target configurations and safe-mode status endpoints.
 """
 
-from typing import Any, Dict, List
+from typing import Any, Dict
 from fastapi import APIRouter, Depends
 from app.core.config import settings
 from app.core.security import verify_api_key

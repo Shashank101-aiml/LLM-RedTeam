@@ -8,7 +8,6 @@ and detects regressions (passed -> failed) without fabricating comparisons.
 from typing import Dict, List, Set
 from sqlalchemy.orm import Session
 from app.models.evaluation_run import EvaluationRun
-from app.models.test_execution import TestExecution
 from app.schemas.enums import ExecutionStatus
 from app.schemas.evaluation_run import RunComparisonResult
 

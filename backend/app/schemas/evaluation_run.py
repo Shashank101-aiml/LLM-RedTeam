@@ -35,7 +35,7 @@ class EvaluationRunRead(BaseModel):
     findings_count: int = 0
     created_at: Union[datetime, str]
     completed_at: Optional[Union[datetime, str]] = None
-    
+
     metrics: Optional[MetricSnapshotRead] = None
     findings: List[FindingRead] = Field(default_factory=list)
     executions: List[TestExecutionRead] = Field(default_factory=list)
@@ -45,15 +45,15 @@ class RunComparisonResult(BaseModel):
     baseline_run_id: str
     candidate_run_id: str
     compatibility_warning: bool = False
-    
+
     delta_asr: Optional[float] = None
     delta_security_pass_rate: Optional[float] = None
     delta_fpr: Optional[float] = None
-    
+
     new_findings_count: int = 0
     regressions_count: int = 0
     improvements_count: int = 0
-    
+
     regression_test_ids: List[str] = Field(default_factory=list)
     improvement_test_ids: List[str] = Field(default_factory=list)
     category_diffs: Dict[str, Dict[str, Any]] = Field(default_factory=dict)

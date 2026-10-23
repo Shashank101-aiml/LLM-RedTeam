@@ -3,21 +3,17 @@ Tests for AI-IAM Target Adapter, External Scanner Normalizers (Promptfoo, Garak)
 Safe-Mode boundaries, failure modes, and Ingestion APIs.
 """
 
-import json
-from unittest.mock import AsyncMock, patch
 import httpx
 import pytest
 from fastapi.testclient import TestClient
 
-from app.adapters.ai_iam_adapter import AIIAMAuthError, AIIAMTargetAdapter
-from app.core.config import settings
+from app.adapters.ai_iam_adapter import AIIAMTargetAdapter
 from app.db.session import SessionLocal
 from app.evaluation.context import ExecutionContext
 from app.integrations.garak_normalizer import GarakNormalizer
 from app.integrations.promptfoo_normalizer import PromptfooNormalizer
 from app.main import app
 from app.models.evaluation_run import EvaluationRun
-from app.models.finding import Finding
 from app.schemas.enums import AttackCategory, ExecutionStatus, Severity
 from app.schemas.test_case import ExpectedOutcome, TestCaseBase
 

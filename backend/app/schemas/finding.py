@@ -3,8 +3,8 @@ Pydantic schemas for Findings.
 """
 
 from datetime import datetime
-from typing import Any, Dict, List, Optional, Union
-from pydantic import BaseModel, ConfigDict, Field
+from typing import Union
+from pydantic import BaseModel, ConfigDict
 from app.schemas.enums import AttackCategory, Severity
 
 
