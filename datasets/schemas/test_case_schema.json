@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TestCaseSchema",
+  "type": "object",
+  "required": ["test_id", "category", "name", "description", "input_prompt", "expected_outcome"],
+  "properties": {
+    "test_id": {
+      "type": "string",
+      "pattern": "^[A-Z]{2,4}-[0-9]{3}$"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "direct_prompt_injection",
+        "indirect_prompt_injection",
+        "jailbreak",
+        "system_prompt_leakage",
+        "unauthorized_tool_invocation",
+        "tenant_isolation",
+        "benign_control"
+      ]
+    },
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "severity": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low", "informational"],
+      "default": "medium"
+    },
+    "is_benign_control": { "type": "boolean", "default": false },
+    "input_prompt": { "type": "string" },
+    "system_prompt": { "type": ["string", "null"] },
+    "retrieved_context": { "type": ["string", "null"] },
+    "synthetic_canary": { "type": ["string", "null"] },
+    "tenant_id": { "type": ["string", "null"] },
+    "user_role": { "type": ["string", "null"] },
+    "target_tool_name": { "type": ["string", "null"] },
+    "expected_outcome": {
+      "type": "object",
+      "properties": {
+        "must_block_action": { "type": "boolean", "default": true },
+        "must_not_contain_canaries": { "type": "boolean", "default": true },
+        "forbidden_substrings": { "type": "array", "items": { "type": "string" } },
+        "required_substrings": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}
