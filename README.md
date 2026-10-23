@@ -30,53 +30,61 @@ It evaluates systems across **6 core adversarial attack categories** plus **beni
 ## 2. Architecture & Pipeline
 
 ```mermaid
+
+```mermaid
 graph TD
-    subgraph UI & Client Layer
-        Dashboard[React + TypeScript + Vite Dashboard :3000]
-        CLI[Benchmarking Runner CLI / Scripts]
+    subgraph UI["UI & Client Layer"]
+        Dashboard["React + TypeScript + Vite Dashboard :3000"]
+        CLI["Benchmarking Runner CLI / Scripts"]
     end
 
-    subgraph API & Backend Layer (FastAPI :8000)
-        API[FastAPI Gateway /api/v1]
-        Auth[API Auth & Safe-Mode SSRF Guard]
-        RunManager[Evaluation Run Manager & Async Worker]
-        MetricsEngine[Metrics & Aggregation Engine]
-        ReportGen[Report Exporter - JSON & CSV]
-        IntegrationsRouter[External Scanner Ingestion - Promptfoo & Garak]
+    subgraph API_Backend["API & Backend Layer (FastAPI :8000)"]
+        API["FastAPI Gateway /api/v1"]
+        Auth["API Auth & Safe-Mode SSRF Guard"]
+        RunManager["Evaluation Run Manager & Async Worker"]
+        MetricsEngine["Metrics & Aggregation Engine"]
+        ReportGen["Report Exporter - JSON & CSV"]
+        IntegrationsRouter["External Scanner Ingestion - Promptfoo & Garak"]
     end
 
-    subgraph Evaluation Core
-        Corpus[Corpus Registry - 19 Base Test Cases]
-        Evaluator[Outcome Evaluator & Evidence Sanitizer]
-        CanaryDetector[Regex & Split-Token Canary Detector]
+    subgraph Evaluation_Core["Evaluation Core"]
+        Corpus["Corpus Registry - 19 Base Test Cases"]
+        Evaluator["Outcome Evaluator & Evidence Sanitizer"]
+        CanaryDetector["Regex & Split-Token Canary Detector"]
     end
 
-    subgraph Target Adapters
-        MockTarget[Deterministic Mock Target - Vulnerable & Secure Modes]
-        AIIAMAdapter[AI-IAM Platform Adapter - Pre-Execution MCP Proxy]
+    subgraph Target_Adapters["Target Adapters"]
+        TargetAdapters["Target Adapter Router"]
+        MockTarget["Deterministic Mock Target - Vulnerable & Secure Modes"]
+        AIIAMAdapter["AI-IAM Platform Adapter - Pre-Execution MCP Proxy"]
     end
 
-    subgraph Data & Persistence
-        DB[(SQLite / PostgreSQL via SQLAlchemy)]
+    subgraph Data_Persistence["Data & Persistence"]
+        DB[("SQLite / PostgreSQL via SQLAlchemy")]
     end
 
     Dashboard -->|REST / JSON| API
     CLI -->|REST or Direct Python| RunManager
-    API --> Auth --> RunManager
+    API --> Auth
+    Auth --> RunManager
     API --> IntegrationsRouter
+    IntegrationsRouter --> RunManager
+
     RunManager --> Corpus
     RunManager --> TargetAdapters
     TargetAdapters --> MockTarget
     TargetAdapters --> AIIAMAdapter
+
     RunManager --> Evaluator
     Evaluator --> CanaryDetector
     Evaluator --> MetricsEngine
     MetricsEngine --> DB
     Evaluator --> DB
+
     API --> ReportGen
+    ReportGen --> DB
 ```
 
----
 
 ## 3. Safe Mode & Security Controls
 
