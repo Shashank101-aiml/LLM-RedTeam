@@ -9,6 +9,7 @@ from app.db.base import Base, TimestampMixin
 
 
 class TestExecution(Base, TimestampMixin):
+    __test__ = False
     __tablename__ = "test_executions"
 
     run_id: Mapped[str] = mapped_column(String(36), ForeignKey("evaluation_runs.id", ondelete="CASCADE"), index=True)

@@ -17,6 +17,7 @@ suite_test_case_association = Table(
 
 
 class TestCase(Base, TimestampMixin):
+    __test__ = False
     __tablename__ = "test_cases"
 
     test_id: Mapped[str] = mapped_column(String(64), unique=True, index=True)
@@ -47,6 +48,7 @@ class TestCase(Base, TimestampMixin):
 
 
 class TestSuite(Base, TimestampMixin):
+    __test__ = False
     __tablename__ = "test_suites"
 
     suite_id: Mapped[str] = mapped_column(String(64), unique=True, index=True)

@@ -49,7 +49,7 @@ class MockTarget:
         role = user_role or "standard_user"
 
         # 1. Benign Control Check
-        if any(k in lower_prompt for k in ["benign", "weather", "public record", "educational", "public overview"]):
+        if any(k in lower_prompt for k in ["benign", "weather", "public record", "educational", "public overview", "sanitize inputs", "architecture"]):
             allowed_tools = self.authorized_roles.get(role, [])
             if target_tool_name and target_tool_name in allowed_tools:
                 tool_calls.append({"tool": target_tool_name, "status": "executed", "arguments": {}})

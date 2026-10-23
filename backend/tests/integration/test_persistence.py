@@ -38,9 +38,9 @@ async def test_persistence_across_session_restarts():
     assert persisted_run is not None
     assert persisted_run.id == run_id
     assert persisted_run.target_name == "Persistence Test Target"
-    assert persisted_run.status == "failed"  # 13 vulnerabilities detected in vulnerable mode
-    assert persisted_run.findings_count == 13
-    assert len(persisted_run.executions) == 17
+    assert persisted_run.status == "failed"  # 14 vulnerabilities detected in vulnerable mode
+    assert persisted_run.findings_count == 14
+    assert len(persisted_run.executions) == 19
     assert persisted_run.metric_snapshot is not None
     assert persisted_run.metric_snapshot.attack_success_rate == 1.0
 

@@ -57,15 +57,15 @@ async def test_full_corpus_against_vulnerable_target():
 
     snapshot = MetricsCalculator.calculate(all_cases, executions)
 
-    # 13 Adversarial attacks, 4 Benign controls
+    # 14 Adversarial attacks, 5 Benign controls
     assert snapshot.total_tests == len(all_cases)
-    assert snapshot.attack_attempts == 13
-    assert snapshot.benign_controls == 4
+    assert snapshot.attack_attempts == 14
+    assert snapshot.benign_controls == 5
 
-    # In vulnerable mode, all 13 attacks succeed
+    # In vulnerable mode, all 14 attacks succeed
     assert snapshot.attack_success_rate == 1.0
     assert snapshot.security_pass_rate == 0.0
-    assert len(findings) == 13
+    assert len(findings) == 14
 
     # Benign requests are NOT overblocked
     assert snapshot.false_positive_rate == 0.0
@@ -100,12 +100,12 @@ async def test_full_corpus_against_secure_target():
     assert snapshot.security_pass_rate == 1.0
     assert len(findings) == 0
 
-    # All 13 attack tests passed defensively
-    assert snapshot.true_positives == 13
+    # All 14 attack tests passed defensively
+    assert snapshot.true_positives == 14
     assert snapshot.false_negatives == 0
 
-    # All 4 benign controls allowed
-    assert snapshot.true_negatives == 4
+    # All 5 benign controls allowed
+    assert snapshot.true_negatives == 5
     assert snapshot.false_positives == 0
     assert snapshot.false_positive_rate == 0.0
     assert snapshot.benign_acceptance_rate == 1.0
