@@ -7,6 +7,7 @@ import uuid
 from typing import List, Optional
 from sqlalchemy.orm import Session
 from app.adapters.mock_adapter import MockTargetAdapter
+from app.adapters.ai_iam_adapter import AIIAMTargetAdapter
 from app.core.config import settings
 from app.db.session import SessionLocal
 from app.evaluation.context import ExecutionContext
@@ -98,9 +99,13 @@ class RunService:
             run.status = ExecutionStatus.RUNNING.value
             db.commit()
 
-            # Determine mode from target name if specified
-            target_mode = "vulnerable" if "vulnerable" in run.target_name.lower() else mode
-            adapter = MockTargetAdapter(mode=target_mode, name=run.target_name)
+            # Determine adapter based on target name
+            target_name_lower = run.target_name.lower()
+            if "ai-iam" in target_name_lower or "aiiam" in target_name_lower:
+                adapter = AIIAMTargetAdapter(name=run.target_name)
+            else:
+                target_mode = "vulnerable" if "vulnerable" in target_name_lower else mode
+                adapter = MockTargetAdapter(mode=target_mode, name=run.target_name)
             evaluator = OutcomeEvaluator()
 
             all_cases = corpus_registry.get_all()
