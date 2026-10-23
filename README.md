@@ -29,7 +29,6 @@ It evaluates systems across **6 core adversarial attack categories** plus **beni
 
 ## 2. Architecture & Pipeline
 
-```mermaid
 
 ```mermaid
 graph TD
