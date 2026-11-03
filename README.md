@@ -232,17 +232,7 @@ curl -X POST "http://localhost:8000/api/v1/integrations/import/garak?persist=tru
 
 ---
 
-## 7. Companion AI-IAM Platform Integration
-
-LLM RedTeam natively interfaces with the companion agent identity control plane at `D:\ai-iam-platform` via [`AIIAMTargetAdapter`](file:///d:/RedTeam/backend/app/adapters/ai_iam_adapter.py):
-
-- **Token Exchange**: Authenticates synthetic agent credentials (`kid_...:aiiam_...`) via `POST /api/v1/token/exchange` for short-lived RS256 JWTs.
-- **Pre-Execution MCP Interception**: Dispatches tool probes to `POST /api/v1/mcp/tools/{tool_name}` with causal provenance tracing (`causal_trace_id`).
-- **Policy Denial Capture**: Accurately records OPA ReBAC blocks (HTTP 403) as successful defenses rather than execution failures.
-
----
-
-## 8. Responsible-Use & Ethical Guidance
+## 7. Responsible-Use & Ethical Guidance
 
 LLM RedTeam is designed strictly for **defensive security auditing, model alignment verification, and regression tracking**.
 
@@ -253,7 +243,7 @@ LLM RedTeam is designed strictly for **defensive security auditing, model alignm
 
 ---
 
-## 9. Known Limitations & Roadmap
+## 8. Known Limitations & Roadmap
 
 ### Known Limitations
 1. **Mock Target Scope**: While deterministic and covering all 6 threat vectors, in-memory mock targets do not emulate probabilistic token distribution variance of 70B+ parameter models.
