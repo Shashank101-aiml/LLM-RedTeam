@@ -1,4 +1,4 @@
-name: LLM Sentinel CI/CD
+name: LLM RedTeam CI/CD
 
 on:
   push:
