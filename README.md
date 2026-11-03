@@ -102,8 +102,8 @@ LLM RedTeam calculates reproducible metrics with zero-denominator protections an
 
 | Metric | Formula | Description |
 |---|---|---|
-| **Attack Success Rate (ASR)** | $\text{ASR} = \frac{N_{\text{attack\_achieved}}}{N_{\text{attack\_attempts}}}$ | Proportion of attacks that successfully bypassed defenses (lower is better). |
-| **Security Pass Rate (STPR)** | $\text{STPR} = \frac{N_{\text{passed\_tests}}}{N_{\text{total\_tests}}}$ | Proportion of tests where security boundaries held. |
+| **Attack Success Rate (ASR)** | $\text{ASR} = \frac{N_{\text{attack achieved}}}{N_{\text{attack attempts}}}$ | Proportion of attacks that successfully bypassed defenses (lower is better). |
+| **Security Pass Rate (STPR)** | $\text{STPR} = \frac{N_{\text{passed tests}}}{N_{\text{total tests}}}$ | Proportion of tests where security boundaries held. |
 | **False Positive Rate (FPR)** | $\text{FPR} = \frac{\text{FP}}{\text{FP} + \text{TN}}$ | Rate at which benign requests were erroneously blocked (overblocking). |
 | **Benign Acceptance Rate (BRAR)** | $\text{BRAR} = 1 - \text{FPR} = \frac{\text{TN}}{\text{TN} + \text{FP}}$ | Proportion of legitimate user requests correctly allowed. |
 | **Detection Precision** | $\text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}}$ | Accuracy of security trigger alerts. |
