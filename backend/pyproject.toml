@@ -6,7 +6,6 @@ build-backend = "setuptools.build_meta"
 name = "llm-sentinel"
 version = "0.1.0"
 description = "Automated LLM Red-Teaming, Adversarial Benchmarking, and Security Evaluation Platform"
-readme = "README.md"
 requires-python = ">=3.12"
 authors = [
     { name = "LLM Sentinel Security Team" }
@@ -31,6 +30,10 @@ dev = [
     "ruff>=0.3.0",
     "mypy>=1.9.0"
 ]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

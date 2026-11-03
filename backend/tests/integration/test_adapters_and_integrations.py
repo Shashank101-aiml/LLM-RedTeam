@@ -8,7 +8,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from app.adapters.ai_iam_adapter import AIIAMTargetAdapter
-from app.db.session import SessionLocal
+from app.db.session import SessionLocal, init_db
 from app.evaluation.context import ExecutionContext
 from app.integrations.garak_normalizer import GarakNormalizer
 from app.integrations.promptfoo_normalizer import PromptfooNormalizer
@@ -268,6 +268,7 @@ def test_normalizers_corrupted_payload_handling():
 
 def test_api_import_promptfoo_and_garak():
     """Verifies HTTP endpoints for importing and optionally persisting reports."""
+    init_db()
     client = TestClient(app)
 
     # 1. Promptfoo without persist
