@@ -122,6 +122,11 @@ def resolve_promptfoo_command() -> List[str]:
     pf_which = shutil.which("promptfoo")
     if pf_which:
         pf_path = Path(pf_which).resolve()
+        # Symlinked npm bin resolves into <root>/node_modules/promptfoo/...; walk up to find the package root
+        for anc in pf_path.parents:
+            if anc.name == "promptfoo" and (anc / "package.json").exists():
+                candidate_roots.append(anc)
+                break
         candidate_roots.append(pf_path.parent / "node_modules" / "promptfoo")
         candidate_roots.append(pf_path.parent.parent / "lib" / "node_modules" / "promptfoo")
 
