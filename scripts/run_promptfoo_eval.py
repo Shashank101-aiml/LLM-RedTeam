@@ -8,12 +8,12 @@ defended target, and exports sanitized JSON, CSV, and HTML evaluation reports.
 """
 
 import argparse
-from datetime import UTC, datetime
 import html
 import json
 import os
-from pathlib import Path
 import sys
+from datetime import UTC, datetime
+from pathlib import Path
 
 # Ensure backend is on PYTHONPATH
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "backend")))
@@ -26,6 +26,19 @@ from app.integrations.promptfoo.runner import PromptfooRunner, get_promptfoo_sta
 from app.integrations.promptfoo.validators import validate_promptfoo_config_dict
 from app.services.comparison_service import ComparisonService
 from app.services.export_service import ExportService
+
+
+def _report_runner_diagnostics(label: str, summary) -> None:
+    """Prints sanitized Promptfoo runner diagnostics when execution did not complete cleanly."""
+    if summary.exit_code not in (0, 100) or summary.error_message:
+        msg = summary.error_message or ""
+        err = (summary.stderr_sanitized or "")[-1500:]
+        out = (summary.stdout_sanitized or "")[-1500:]
+        print(f"  [{label}] Promptfoo diagnostics: exit={summary.exit_code} error={msg}")
+        print(f"  [{label}] stderr: {err}")
+        print(f"  [{label}] stdout: {out}")
+        flat = " | ".join((msg + " " + err).split())[:600].replace("%", "")
+        print(f"::error::Promptfoo {label} run failed: exit={summary.exit_code} {flat}")
 
 
 def generate_sanitized_html_report(json_report_str: str) -> str:
@@ -137,6 +150,7 @@ def run_cli(
                 selected_categories=categories,
                 run_id=vuln_run.id,
             )
+            _report_runner_diagnostics("vulnerable", vuln_summary)
             vuln_run = PromptfooRunner.persist_summary_to_run(db, vuln_run, vuln_summary)
             vm = vuln_run.metric_snapshot
             print(f"  Vulnerable Run ID: {vuln_run.id}")
@@ -155,6 +169,7 @@ def run_cli(
                 selected_categories=categories,
                 run_id=sec_run.id,
             )
+            _report_runner_diagnostics("secure", sec_summary)
             sec_run = PromptfooRunner.persist_summary_to_run(db, sec_run, sec_summary)
             sm = sec_run.metric_snapshot
             print(f"  Secure Run ID:     {sec_run.id}")

@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import time
 from typing import Any, Dict, List, Optional
 import uuid
@@ -231,6 +232,8 @@ class PromptfooRunner:
         env["PROMPTFOO_DISABLE_REDTEAM_REMOTE_GENERATION"] = "1"
         env["CI"] = "true"
         env["PYTHONIOENCODING"] = "utf-8"
+        # Use the same interpreter (with app deps installed) for the Python provider
+        env["PROMPTFOO_PYTHON"] = sys.executable
         return env
 
     def run_evaluation(

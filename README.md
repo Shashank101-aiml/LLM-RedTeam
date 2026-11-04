@@ -268,8 +268,7 @@ The `.github/workflows/ci.yml` workflow (**`LLM RedTeam CI/CD`**) runs on every 
 
 ---
 
-<<<<<<< HEAD
-## 7. Responsible-Use & Ethical Guidance
+## 9. Responsible-Use & Ethical Guidance
 
 LLM RedTeam is designed strictly for **defensive security auditing, model alignment verification, and regression tracking**.
 
@@ -280,28 +279,13 @@ LLM RedTeam is designed strictly for **defensive security auditing, model alignm
 
 ---
 
-## 8. Known Limitations & Roadmap
+## 10. Limitations & Known Constraints
 
-### Known Limitations
-1. **Mock Target Scope**: While deterministic and covering all 6 threat vectors, in-memory mock targets do not emulate probabilistic token distribution variance of 70B+ parameter models.
-2. **External Scanner Normalization**: Promptfoo and Garak report normalizers currently support single-turn evaluation outputs; multi-turn conversation traces are flattened to single-turn attempts.
-3. **Local SQLite Concurrency**: SQLite in WAL mode supports concurrent reads and serialized writes. For high-volume enterprise deployments with 100+ concurrent evaluation workers, PostgreSQL is recommended.
-
-### Roadmap
-- [ ] Multi-turn interactive adversarial conversation agents.
-- [ ] Automated continuous CI/CD PR blocking on ASR regression thresholds.
-- [ ] Distributed Celery/Redis worker queues for massive test corpora.
-- [ ] Direct SAML/OIDC SSO integration for enterprise multi-tenancy.
-=======
-## 9. Limitations & Known Constraints
-
-1. **Deterministic Mock Target Scope**: Default evaluations execute against the deterministic `MockTarget` (`mock-secure` and `mock-vulnerable`) and local `AIIAMTargetAdapter` so CI/CD and local testing require zero paid API keys. While `ExternalAuthorizedHTTPAdapter` provides a future-compatible interface for external HTTP LLM endpoints when `SAFE_MODE=false` and `authorize_external=True`, live third-party commercial LLM APIs are not enabled by default.
-2. **Subprocess Python Provider Overhead**: Promptfoo's Python provider bridge invokes Python per test case during `promptfoo eval`, which takes ~8–15 seconds for the 22-case suite on local hardware.
+1. **Deterministic Mock Target Scope**: Default evaluations execute against the deterministic `MockTarget` (`mock-secure` and `mock-vulnerable`), so CI/CD and local testing require zero paid API keys. `ExternalAuthorizedHTTPAdapter` provides a future-compatible interface for external HTTP LLM endpoints when `SAFE_MODE=false` and `authorize_external=True`; live third-party LLM APIs are not enabled by default.
+2. **Subprocess Python Provider Overhead**: Promptfoo's Python provider bridge invokes Python per test case during `promptfoo eval`, which takes ~8-15 seconds for the 22-case suite on local hardware.
 3. **Single-Turn Evaluation Focus**: Current YAML test suites evaluate single-turn prompts with optional RAG context, system prompt, and tool call metadata.
->>>>>>> 35dc3d7 (feat(promptfoo): integrate executable Promptfoo evaluation and red-teaming pipeline)
 
 ---
-
-## 10. License
+## 11. License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.

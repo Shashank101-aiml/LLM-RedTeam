@@ -43,7 +43,11 @@ jobs:
           PROMPTFOO_DISABLE_TELEMETRY: "1"
           PROMPTFOO_DISABLE_UPDATE: "1"
         run: |
-          pytest backend/tests -v --cov=backend/app --cov-report=term-missing
+          set -o pipefail
+          pytest backend/tests -v --tb=short --cov=backend/app --cov-report=term-missing 2>&1 | tee pytest_ci.log || {
+            grep -E '^(FAILED|ERROR)|^E  ' pytest_ci.log | head -15 | sed 's/%//g' | while read -r l; do echo "::error::$l"; done
+            exit 1
+          }
 
   promptfoo-eval:
     name: Promptfoo Security Evaluation & Regression Gate
