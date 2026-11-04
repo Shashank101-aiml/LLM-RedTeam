@@ -7,6 +7,8 @@ import {
   Finding,
   HealthStatus,
   MetricSnapshot,
+  PromptfooEvaluationRun,
+  PromptfooIntegrationStatus,
   RunComparisonResult,
   TargetConfiguration,
   TestCase,
@@ -131,4 +133,40 @@ export function getExportJsonUrl(runId: string): string {
 
 export function getExportCsvUrl(runId: string): string {
   return `${BASE_URL}/runs/${runId}/export/csv`;
+}
+
+export async function fetchPromptfooStatus(): Promise<PromptfooIntegrationStatus> {
+  const res = await fetch(`${BASE_URL}/evaluations/promptfoo/status`);
+  if (!res.ok) throw new Error(`Failed to fetch Promptfoo status: HTTP ${res.status}`);
+  return res.json();
+}
+
+export async function fetchPromptfooRuns(): Promise<PromptfooEvaluationRun[]> {
+  const res = await fetch(`${BASE_URL}/evaluations/promptfoo/runs`);
+  if (!res.ok) throw new Error(`Failed to fetch Promptfoo runs: HTTP ${res.status}`);
+  return res.json();
+}
+
+export async function fetchPromptfooRunDetails(runId: string): Promise<PromptfooEvaluationRun> {
+  const res = await fetch(`${BASE_URL}/evaluations/promptfoo/runs/${runId}`);
+  if (!res.ok) throw new Error(`Failed to fetch Promptfoo run ${runId}: HTTP ${res.status}`);
+  return res.json();
+}
+
+export async function triggerPromptfooRun(payload: {
+  target: string;
+  selected_categories?: string[];
+  notes?: string;
+  async_execution?: boolean;
+}): Promise<PromptfooEvaluationRun> {
+  const res = await fetch(`${BASE_URL}/evaluations/promptfoo/run`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({}));
+    throw new Error(errorData.detail || `Failed to run Promptfoo evaluation: HTTP ${res.status}`);
+  }
+  return res.json();
 }

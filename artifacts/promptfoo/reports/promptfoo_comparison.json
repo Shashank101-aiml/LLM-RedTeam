@@ -1,0 +1,32 @@
+{
+  "baseline_run_id": "f382a593-86ac-453b-985f-0f5298a781fc",
+  "candidate_run_id": "c7cf381b-1e1e-47ac-8e85-65c9626fd86a",
+  "compatibility_warning": false,
+  "delta_asr": -1.0,
+  "delta_security_pass_rate": 1.0,
+  "delta_fpr": 0.0,
+  "new_findings_count": 0,
+  "regressions_count": 0,
+  "improvements_count": 17,
+  "regression_test_ids": [],
+  "improvement_test_ids": [
+    "b5bb0d04-87a7-4a5b-bd50-c540f74f7a59",
+    "716c3923-4736-4660-9687-63c11184202c",
+    "f46d2e17-9da5-4ccd-a97f-abe474ee0629",
+    "bb24dc4a-febc-418d-9ee7-154ea08f7167",
+    "d1cb7894-f3a8-46aa-8e10-0e343678aa15",
+    "e70a5df3-9e60-42f4-8251-31c10a5d2628",
+    "ad17b370-05bd-4769-815a-d3b317c92ac1",
+    "4696f642-5751-4fb8-8652-6210f0879c83",
+    "b491f534-088a-425d-8274-dca9e478c211",
+    "99eb8f72-668a-4ca5-b0ee-e44bcd964d9b",
+    "4668cd69-f42f-496b-a5ee-4052e4df32ab",
+    "e9e37555-fc0d-4d82-aab8-dbaddcc7d8e6",
+    "7a4a0d08-de6e-4694-9298-fa42bbb951eb",
+    "1253f109-db51-40d6-90d4-b6bbbe3362c7",
+    "725db02c-a9de-40f9-8e06-48330c0fd9ff",
+    "7a4af53f-f5a4-49cb-9791-81658300c0f8",
+    "7b39285f-81d8-4650-8f84-5376a77352ee"
+  ],
+  "category_diffs": {}
+}

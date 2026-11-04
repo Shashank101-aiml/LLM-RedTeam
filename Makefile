@@ -3,10 +3,11 @@
 
 help:
 	@echo "Available commands:"
-	@echo "  make install       Install backend and frontend dependencies"
-	@echo "  make lint          Run Ruff linter on backend"
-	@echo "  make test          Run full test suite (43 tests, zero credentials required)"
-	@echo "  make test-unit     Run backend unit tests"
+	@echo "  make install        Install backend, frontend, and Promptfoo CLI dependencies"
+	@echo "  make lint           Run Ruff linter on backend"
+	@echo "  make test           Run full test suite (zero external credentials required)"
+	@echo "  make promptfoo-eval Run executable Promptfoo benchmark (vulnerable vs secure)"
+	@echo "  make test-unit      Run backend unit tests"
 	@echo "  make test-cov      Run pytest with coverage report"
 	@echo "  make dev-backend   Start FastAPI development server"
 	@echo "  make dev-frontend  Start Vite development server"
@@ -24,6 +25,9 @@ lint:
 
 test:
 	.\backend\.venv\Scripts\pytest backend/tests -v
+
+promptfoo-eval:
+	python scripts/run_promptfoo_eval.py --target both --output-dir artifacts/promptfoo/reports
 
 test-unit:
 	.\backend\.venv\Scripts\pytest backend/tests/unit -v

@@ -1,0 +1,26 @@
+# LLM-RedTeam Master Promptfoo Security Evaluation Configuration
+# Executes all 6 required security evaluation categories against the LLM-RedTeam Target Adapter bridge.
+
+description: "LLM-RedTeam Adversarial & Benign Control Security Benchmark (Promptfoo Engine)"
+
+prompts:
+  - "{{prompt}}"
+
+providers:
+  - id: "file://../../backend/app/integrations/promptfoo/provider.py:call_api"
+    label: "Deterministic Mock Target (Secure Mode)"
+    config:
+      target: "mock-secure"
+      mode: "secure"
+      safe_mode: true
+
+evaluateOptions:
+  maxConcurrency: 4
+  showProgressBar: false
+
+tests:
+  - file://injection.yaml
+  - file://jailbreak.yaml
+  - file://data_leakage.yaml
+  - file://tool_authorization.yaml
+  - file://benign.yaml

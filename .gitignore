@@ -63,4 +63,7 @@ Thumbs.db
 reports/*.pdf
 reports/*.csv
 reports/*.json
+artifacts/promptfoo/*
+!artifacts/promptfoo/reports/
+!artifacts/promptfoo/reports/*
 scratch/

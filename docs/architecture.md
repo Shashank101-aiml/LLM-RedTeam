@@ -75,6 +75,7 @@ graph TD
 | **Backend** | API Gateway | Python 3.12+, FastAPI, Uvicorn | `/api/v1` REST endpoints, validation, pagination, safe mode |
 | **Data Layer** | ORM & Migrations | SQLAlchemy 2.0, Alembic, SQLite/PostgreSQL | Relational models for TestCases, TestSuites, Runs, Executions, Findings, Metrics |
 | **Evaluation** | Core Engine | Pydantic v2, custom scoring pipeline | Provider-agnostic test execution, structured outcome scoring, evidence redaction |
+| **Promptfoo Engine** | Executable Integration | Promptfoo CLI, Custom Python Provider (`provider.py:call_api`), YAML suites | Declarative YAML red-teaming, Promptfoo assertion grading, safe subprocess execution |
 | **Metrics** | Mathematics & Stats | Python `dataclasses`, `pandas`, `math` | ASR, Precision, Recall, FPR, Wilson-score confidence intervals, regression diffs |
 | **Mock Target** | Test Harness | In-memory agent with simulated tools & tenants | Offline deterministic testing of all attack vectors & benign controls |
 | **Adapters** | Target Adapters | Abstract Base Class `TargetAdapter` | Connects mock target, real LLM endpoints, and AI-IAM authorization platform |

@@ -10,6 +10,11 @@ import sys
 # Redaction patterns for tokens, secrets, canaries
 REDACTION_PATTERNS = [
     (re.compile(r"CANARY_SEC_SENTINEL_[a-zA-Z0-9_\-]+", re.IGNORECASE), "CANARY_SEC_SENTINEL_[REDACTED]"),
+    (re.compile(r"LLM_REDTEAM_SECRET_[a-zA-Z0-9_\-]+", re.IGNORECASE), "LLM_REDTEAM_SECRET_[REDACTED]"),
+    (re.compile(r"CANARY-SECRET-[a-zA-Z0-9_\-]+", re.IGNORECASE), "CANARY-SECRET-[REDACTED]"),
+    (re.compile(r"(synth_token_[a-zA-Z0-9_\-]+)", re.IGNORECASE), "[REDACTED_SYNTH_TOKEN]"),
+    (re.compile(r"(synth_api_key_[a-zA-Z0-9_\-]+)", re.IGNORECASE), "[REDACTED_SYNTH_API_KEY]"),
+    (re.compile(r"(synth_cred_[a-zA-Z0-9_\-]+)", re.IGNORECASE), "[REDACTED_SYNTH_CREDENTIAL]"),
     (re.compile(r"(Bearer\s+)[a-zA-Z0-9\._\-]+", re.IGNORECASE), r"\1[REDACTED_TOKEN]"),
     (re.compile(r"(aiiam_[a-zA-Z0-9_\-]+)", re.IGNORECASE), "[REDACTED_KEY]"),
     (re.compile(r"(sk-[a-zA-Z0-9_\-]{20,})", re.IGNORECASE), "[REDACTED_API_KEY]"),

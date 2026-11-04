@@ -163,3 +163,62 @@ export interface TargetConfiguration {
   description: string;
   safe_mode_compatible: boolean;
 }
+
+export interface PromptfooCategoryInfo {
+  id: string;
+  suite: string;
+  name: string;
+  description: string;
+  dataset_file: string;
+}
+
+export interface PromptfooTargetInfo {
+  id: string;
+  name: string;
+  adapter_type: string;
+  model_identifier: string;
+  safe_mode_compatible: boolean;
+}
+
+export interface PromptfooIntegrationStatus {
+  integration: string;
+  available: boolean;
+  version: string | null;
+  safe_mode: boolean;
+  allowed_target_hosts: string[];
+  supported_targets: PromptfooTargetInfo[];
+  available_categories: PromptfooCategoryInfo[];
+}
+
+export interface PromptfooDetailedResult {
+  test_case_id: string;
+  category: string;
+  is_benign_control: boolean;
+  target_provider: string;
+  model_identifier: string;
+  prompt: string;
+  sanitized_response: string;
+  assertion_results: Array<{
+    pass: boolean;
+    score?: number;
+    reason?: string;
+    assertion?: Record<string, any>;
+  }>;
+  final_status: string;
+  defense_outcome: string;
+  outcome_classification: string;
+  attack_objective_achieved: boolean;
+  duration_ms: number;
+  execution_timestamp: string;
+  failure_reason?: string | null;
+  tool_calls_attempted: any[];
+  canary_detected: boolean;
+  tenant_boundary_violated: boolean;
+}
+
+export interface PromptfooEvaluationRun extends EvaluationRun {
+  duration_ms?: number;
+  target_id?: string | null;
+  model_identifier?: string | null;
+  detailed_results?: PromptfooDetailedResult[];
+}

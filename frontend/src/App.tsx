@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Sidebar, NavTab } from "./components/Sidebar";
 import { OverviewPage } from "./pages/OverviewPage";
+import { PromptfooPage } from "./pages/PromptfooPage";
 import { RunsPage } from "./pages/RunsPage";
 import { FindingsPage } from "./pages/FindingsPage";
 import { MetricsPage } from "./pages/MetricsPage";
@@ -115,6 +116,10 @@ export function App() {
                   onNavigateToRuns={() => setCurrentTab("runs")}
                   onNavigateToFindings={() => setCurrentTab("findings")}
                 />
+              )}
+
+              {currentTab === "promptfoo" && (
+                <PromptfooPage onRunCompleted={loadInitialData} />
               )}
 
               {currentTab === "runs" && (

@@ -8,10 +8,12 @@ import {
   Settings,
   Shield,
   Lock,
+  Terminal,
 } from "lucide-react";
 
 export type NavTab =
   | "overview"
+  | "promptfoo"
   | "runs"
   | "findings"
   | "metrics"
@@ -36,6 +38,7 @@ export function Sidebar({
 }: SidebarProps) {
   const navItems = [
     { id: "overview", label: "Overview", icon: LayoutDashboard },
+    { id: "promptfoo", label: "Promptfoo Engine", icon: Terminal, badge: "LIVE", badgeColor: "bg-sky-500/20 text-sky-300 border-sky-500/30" },
     { id: "runs", label: "Evaluation Runs", icon: PlaySquare, badge: runsCount > 0 ? runsCount : undefined },
     { id: "findings", label: "Findings Triage", icon: ShieldAlert, badge: findingsCount > 0 ? findingsCount : undefined, badgeColor: "bg-rose-500/20 text-rose-300 border-rose-500/30" },
     { id: "metrics", label: "Metrics & Trends", icon: BarChart3 },

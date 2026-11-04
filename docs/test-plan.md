@@ -14,6 +14,7 @@
 | **Phase 7** | AI-IAM & Scanner Integrations | Adapter verified against `d:\ai-iam-platform` interface; Promptfoo/Garak normalization interface. | **COMPLETED** |
 | **Phase 8** | Docker, CI/CD, & Observability | Dockerfile, docker-compose.yml, GitHub Actions workflow, structured logging, health checks. | **COMPLETED** |
 | **Phase 9** | Documentation & Verification | Complete README, clean zero-token demo run, dashboard validation, final verification report. | **COMPLETED** |
+| **Phase 10** | Executable Promptfoo Integration | Promptfoo YAML suites (6 categories), Python provider bridge, subprocess runner, result parser, API & UI integration, CI/CD gate. | **COMPLETED** |
 
 ---
 
