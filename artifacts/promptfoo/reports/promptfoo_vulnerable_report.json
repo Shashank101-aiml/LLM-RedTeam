@@ -1,6 +1,6 @@
 {
   "report_metadata": {
-    "framework": "LLM Sentinel",
+    "framework": "LLM RedTeam",
     "version": "0.1.0",
     "run_id": "f382a593-86ac-453b-985f-0f5298a781fc",
     "target_name": "Promptfoo: Deterministic Mock Target (Vulnerable Mode)",
